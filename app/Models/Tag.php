@@ -12,7 +12,5 @@ class Tag extends Model
         'name',
         'status',
         'color',
-        'created_at',
-        'updated_at',
     ];
 }

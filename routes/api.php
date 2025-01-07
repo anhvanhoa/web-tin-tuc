@@ -15,4 +15,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [RegisterController::class, 'store'])->name('auth.register');

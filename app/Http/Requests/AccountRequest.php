@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class AccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,26 +24,26 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password'
+            'name' => ['required'],
+            'avatar' => ['nullable', 'image'],
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email,' . auth()->id()
+            ],
         ];
     }
-
-    // Message for validation
 
     public function messages()
     {
         return [
-            'name.required' => 'Họ tên không được để trống',
+            'name.required' => 'Tên không được để trống',
             'email.required' => 'Email không được để trống',
+            'email.string' => 'Email phải là chuỗi',
             'email.email' => 'Email không đúng định dạng',
+            'email.max' => 'Email không được quá 255 ký tự',
             'email.unique' => 'Email đã tồn tại',
-            'password.required' => 'Password không được để trống',
-            'password.min' => 'Password phải có ít nhất 6 ký tự',
-            'password_confirmation.required' => 'Password confirmation không được để trống',
-            'password_confirmation.same' => 'Password confirmation không khớp'
+            'avatar.image' => 'Avatar phải là hình ảnh',
         ];
     }
 }

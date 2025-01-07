@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Services\RegisterService;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -14,8 +13,13 @@ class RegisterController extends Controller
     {
         $this->registerService = $registerService;
     }
+    
+    public function create()
+    {
+        return view('auth.register');
+    }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
         return $this->registerService->register($request);
     }

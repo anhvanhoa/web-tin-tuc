@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Services\UserService;
+use App\Services\LoginService;
 
 class LoginController extends Controller
 {
-    protected $userService;
-    public function __construct(UserService $userService)
+    protected $loginService;
+    public function __construct(LoginService $loginService)
     {
-        $this->userService = $userService;
+        $this->loginService = $loginService;
     }
-    // login
-    public function login(LoginRequest $request)
+
+    // login view
+    public function create()
     {
-        return $this->userService->login($request);
+        return view('auth.login');
+    }
+
+    // login
+    public function store(LoginRequest $request)
+    {
+        return $this->loginService->login($request);
     }
 }

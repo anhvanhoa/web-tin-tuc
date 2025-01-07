@@ -17,7 +17,29 @@ class Post extends Model
         'user_id',
         'category_id',
         'status',
-        'created_at',
-        'updated_at',
     ];
+
+    // join category by category_id
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // join tags by post_id
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'posts_tags', 'post_id', 'tag_id');
+    }
+
+    // join user by user_id
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // join comments by post_id
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

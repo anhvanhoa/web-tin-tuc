@@ -25,13 +25,13 @@ class UserRepository extends BaseRepository
         return $this->create($data);
     }
 
-    public function updateUser(array $data, $id)
+    public function updateUser(int $id, array $data)
     {
-        return $this->updateById($data, $id);
+        return $this->updateById($id, $data);
     }
 
     public function findUser($email)
     {
-        return $this->getByColumn('email', $email);
+        return $this->where('email', $email)->first();
     }
 }
