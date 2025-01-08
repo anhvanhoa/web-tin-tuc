@@ -20,7 +20,8 @@ class RoleMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role !== self::ROLE_ADMIN) {
+        $roles = strtoupper(auth()->user()->roles);
+        if ($roles !== self::ROLE_ADMIN) {
             return redirect()->route('home');
         }
         return $next($request);

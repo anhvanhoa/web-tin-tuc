@@ -16,15 +16,24 @@ class LoginService
     }
     public function login(LoginRequest $request)
     {
-        try {
-            $credentials = $request->validated();
-            if (Auth::attempt($credentials, $request->remember)) {
-                $request->session()->regenerate();
-                return redirect()->route('home');
-            }
-            return back()->with('error', 'Tài khoản hoặc mật khẩu không đúng');
-        } catch (\Throwable $th) {
-            return back()->with('error', $th->getMessage());
+        $credentials = $request->validated();
+        // Check if the user exists
+        $user = $this->userRepository->getByEmail($credentials['email']);
+        if (!$user) {
+            throw new \Exception('Tài khoản hoặc mật khẩu không đúng');
         }
+
+        // Check if the user is active
+        if ($user->status != 'active') {
+            throw new \Exception('Tài khoản chưa được kích hoạt');
+        }
+
+        // Check if the password is correct
+        $isLogin = Auth::attempt($credentials, $request->remember);
+        if (!$isLogin) {
+            throw new \Exception('Tài khoản hoặc mật khẩu không đúng');
+        }
+        $request->session()->regenerate();
+        return redirect()->route('home');
     }
 }

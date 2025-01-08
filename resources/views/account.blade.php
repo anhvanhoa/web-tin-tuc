@@ -5,6 +5,7 @@
 
     <form action="{{ route('me.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div>
             <img width="50px" height="50px"
                 src="@if ($user->avatar) {{ asset('storage/' . $user->avatar) }} @else {{ 'https://placehold.co/400x400' }} @endif"

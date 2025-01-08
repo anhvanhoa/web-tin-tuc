@@ -31,7 +31,7 @@ class AccountService
     {
         $categories = $this->categoryRepository->allCategories();
         $tags = $this->tagRepository->allTags();
-        $user = $this->userRepository->findUser(Auth::user()->email);
+        $user = $this->userRepository->getByEmail(Auth::user()->email);
         return [
             'user' => $user,
             'categories' => $categories,

@@ -38,7 +38,7 @@ Route::post('logout', [LogoutController::class, 'destroy'])->name('auth.logout')
 Route::middleware('auth')->group(function () {
     // Account
     Route::get('me', [AccountController::class, 'edit'])->name('me');
-    Route::post('me', [AccountController::class, 'update'])->name('me.update');
+    Route::put('me', [AccountController::class, 'update'])->name('me.update');
 
     // Comment
     Route::post('comment', [PostController::class, 'comment'])->name('comment');

@@ -19,19 +19,13 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
-
-    public function createUser(array $data)
-    {
-        return $this->create($data);
-    }
-
     public function updateUser(int $id, array $data)
     {
         return $this->updateById($id, $data);
     }
 
-    public function findUser($email)
+    public function getByEmail($email)
     {
-        return $this->where('email', $email)->first();
+        return $this->model->where('email', $email)->first();
     }
 }

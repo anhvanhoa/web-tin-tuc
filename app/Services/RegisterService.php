@@ -25,6 +25,7 @@ class RegisterService
                 'password' => $request->password
             ];
             $data['password'] = Hash::make($data['password']);
+            $this->userRepository->create($data);
             return redirect()->route('auth.login.view')->with('success-register', 'Đăng ký thành công');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Http\Requests\CommentRequest;
-use App\Models\Comment;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;

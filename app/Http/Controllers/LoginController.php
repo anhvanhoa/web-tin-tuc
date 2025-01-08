@@ -22,6 +22,11 @@ class LoginController extends Controller
     // login
     public function store(LoginRequest $request)
     {
-        return $this->loginService->login($request);
+        try {
+            $this->loginService->login($request);
+            return redirect()->route('home');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 }

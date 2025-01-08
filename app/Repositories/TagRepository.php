@@ -23,4 +23,5 @@ class TagRepository extends BaseRepository
     {
         return $this->all();
     }
+
 }
