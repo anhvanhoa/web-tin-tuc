@@ -116,10 +116,10 @@
                                 <td>{{ $comment->content }}</td>
                                 <td>{{ $comment->created_at->format('d/m/Y H:i:s') }}</td>
                                 <td>
-                                    <form action="{{ route('admin.comments.update', $comment->id) }}" method="post"
+                                    <form action="{{ route('admin.comments.update', $comment->id) }}" method="POST"
                                         style="display: inline-block">
                                         @csrf
-                                        @method('put')
+                                        @method('PUT')
                                         <input type="text" name="status"
                                             value="{{ $comment->status == 'published' ? 'draft' : 'published' }}" hidden>
                                         <button type="submit" class="btn btn-info">
