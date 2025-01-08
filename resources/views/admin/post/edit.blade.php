@@ -99,6 +99,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Content</th>
+                            <th>Status</th>
                             <th>Create</th>
                             <th>Actions</th>
                         </tr>
@@ -114,6 +115,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $comment->content }}</td>
+                                <td>{{ $comment->status  }}</td>
                                 <td>{{ $comment->created_at->format('d/m/Y H:i:s') }}</td>
                                 <td>
                                     <form action="{{ route('admin.comments.update', $comment->id) }}" method="POST"

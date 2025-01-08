@@ -1,0 +1,12 @@
+{
+    "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/colors.css": "/css/colors.css",
+    "/css/responsive.css": "/css/responsive.css",
+    "/css/font-awesome.min.css": "/css/font-awesome.min.css",
+    "/css/style.css": "/css/style.css",
+    "/css/version/tech.css": "/css/version/tech.css",
+    "/js/custom.js": "/js/custom.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/tether.min.js": "/js/tether.min.js"
+}

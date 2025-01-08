@@ -33,4 +33,9 @@ class PostRepository extends BaseRepository
     {
         return $this->where('category_id', $slugs)->get();
     }
+
+    public function deletePost(string $userId, string $postId)
+    {
+        return $this->model->where('user_id', $userId)->where('id', $postId)->delete();
+    }
 }

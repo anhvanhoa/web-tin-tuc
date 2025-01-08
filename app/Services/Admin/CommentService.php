@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Http\Requests\Admin\CommentRequest;
 use App\Repositories\CommentRepository;
+use Illuminate\Support\Facades\Log;
 
 class CommentService
 {
@@ -18,7 +19,8 @@ class CommentService
     public function hiddenComment(CommentRequest $request, string $id)
     {
         $data = $request->validated();
-        return $this->commentRepository->updateById($id,  $data);
+        Log::info("body", $data);
+        return $this->commentRepository->updateById($id, $data);
     }
 
     public function deleteComment(string $id)

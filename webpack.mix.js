@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +11,37 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js("resources/js/bootstrap.min.js", "public/js/bootstrap.min.js")
+    .js("resources/js/custom.js", "public/js/custom.js")
+    .js("resources/js/jquery.min.js", "public/js/jquery.min.js")
+    .js("resources/js/tether.min.js", "public/js/tether.min.js")
+    // .styles(
+    //     [
+    //         "resources/css/bootstrap.css",
+    //         "resources/css/colors.css",
+    //         "resources/css/responsive.css",
+    //         "resources/css/font-awesome.min.css",
+    //         "resources/css/style.css",
+    //         "resources/css/version/tech.css",
+    //     ],
+    //     "public/css/app.css"
+    // );
+    .postCss("resources/css/bootstrap.css", "public/css/bootstrap.css", [
+        require("autoprefixer"),
+    ])
+    .postCss("resources/css/colors.css", "public/css/colors.css", [
+        require("autoprefixer"),
+    ])
+    .postCss("resources/css/responsive.css", "public/css/responsive.css", [
+        require("autoprefixer"),
+    ])
+    .postCss(
+        "resources/css/font-awesome.min.css",
+        "public/css/font-awesome.min.css",
+        [require("autoprefixer")]
+    )
+    .postCss("resources/css/style.css", "public/css/style.css", [])
+    .postCss("resources/css/version/tech.css", "public/css/version/tech.css", [
+        require("autoprefixer"),
+    ])
+    .copy("resources/images", "public/images");

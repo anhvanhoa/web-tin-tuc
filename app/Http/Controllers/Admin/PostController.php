@@ -53,4 +53,14 @@ class PostController extends Controller
             return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
     }
+
+    public function destroy(string $id)
+    {
+        try {
+            $this->postService->deletePost($id);
+            return back()->with('success', "Xóa bài viết thành công");
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors($th->getMessage());
+        }
+    }
 }

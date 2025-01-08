@@ -8,6 +8,7 @@ use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use App\Services\MediaService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostService
 {
@@ -81,5 +82,16 @@ class PostService
 
         $post->update($data);
         $post->tags()->sync($data['tags']);
+    }
+
+    public function deletePost(string $id)
+    {
+        $email = Auth::user()->email;
+        $adminMail = config('app.admin_mail');
+        $userId = Auth::user()->id;
+        if ($email == $adminMail) {
+            return $this->postRepository->deleteById($id);
+        }
+        return $this->postRepository->deletePost($userId, $id);
     }
 }

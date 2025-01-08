@@ -33,7 +33,7 @@
                             <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="" width="40" height="40">
                         </td>
                         <td>
-                            <a href="{{route('post', $post->slugs)}}">{{ $post->title }}</a>
+                            <a href="{{ route('post', $post->slugs) }}">{{ $post->title }}</a>
                         </td>
                         <td>
                             <div>
@@ -47,11 +47,12 @@
                         <td>{{ $post->status }}</td>
                         <td>
                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
-                            {{-- <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post" style="display: inline-block">
+                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post"
+                                style="display: inline-block">
                                 @csrf
-                                @method('delete')
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
-                            </form> --}}
+                            </form>
                         </td>
                     </tr>
                 @endforeach

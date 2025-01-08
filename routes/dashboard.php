@@ -44,7 +44,7 @@ Route::middleware(['auth', 'role'])->name('admin.')->group(function () {
         Route::post('/', [PostController::class, 'store'])->name('store');
         Route::get('{id}', [PostController::class, 'edit'])->name('edit');
         Route::put('{id}', [PostController::class, 'update'])->name('update');
-        // Route::delete('{id}', [PostController::class, 'destroy'])->name('destroy');
+        Route::delete('{id}', [PostController::class, 'destroy'])->name('destroy');
     });
 
     // Comment
