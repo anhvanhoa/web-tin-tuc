@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
-use App\Repositories\TagRepository;
+use Illuminate\Support\Facades\Log;
 
 class NewsService
 {
@@ -14,22 +14,19 @@ class NewsService
 
     public function __construct(
         CategoryRepository $categoryRepository,
-        TagRepository $tagRepository,
         PostRepository $postRepository
     ) {
         $this->categoryRepository = $categoryRepository;
-        $this->tagRepository = $tagRepository;
         $this->postRepository = $postRepository;
     }
 
     public function home()
     {
         $categories = $this->categoryRepository->allCategories();
-        $tags = $this->tagRepository->allTags();
         $posts = $this->postRepository->allPosts();
+        Log::info($posts);
         return [
             'categories' => $categories,
-            'tags' => $tags,
             'posts' => $posts,
         ];
     }

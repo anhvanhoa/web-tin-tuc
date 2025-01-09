@@ -21,17 +21,17 @@ class PostRepository extends BaseRepository
 
     public function allPosts()
     {
-        return $this->all();
+        return $this->model->where('status', 'published')->paginate(10);
     }
 
     public function getPost(string $slugs)
     {
-        return $this->where('slugs', $slugs)->first();
+        return $this->where('slugs', $slugs)->where('status', 'published')->first();
     }
 
     public function getPostsByCategory(string $slugs)
     {
-        return $this->where('category_id', $slugs)->get();
+        return $this->where('category_id', $slugs)->where('status', 'published')->get();
     }
 
     public function deletePost(string $userId, string $postId)

@@ -21,11 +21,11 @@ class CategoryRepository extends BaseRepository
 
     public function allCategories()
     {
-        return $this->all();
+        return $this->where('status', 'active')->get();
     }
 
     public function getCategoryBySlugs(string $slugs)
     {
-        return $this->where('slugs', $slugs)->first();
+        return $this->where('status', 'active')->where('slugs', $slugs)->first();
     }
 }
