@@ -1,4 +1,3 @@
-
 @extends('layouts.layout-admin')
 
 @section('content')
@@ -160,8 +159,11 @@
                                         <div class="col-md-12">
                                             <div class=" mb-3">
                                                 <label for="content">Content</label>
-                                                <textarea style="background: #e7e7e7; padding-inline: 8px;" name="content" id="content" class="form-control"
-                                                    rows="7">{{ $post->content }}</textarea>
+                                                <div id="quill-editor" class="mb-3" style="height: 300px;">
+                                                    {!! old('content') !!}
+                                                </div>
+                                                <textarea rows="3" class="mb-3 d-none" name="content" id="quill-editor-area">
+                                                </textarea>
                                                 @error('content')
                                                     <div style="color: red">{{ $message }}</div>
                                                 @enderror
@@ -234,4 +236,27 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('quill-editor-area')) {
+                var editor = new Quill('#quill-editor', {
+                    theme: 'snow'
+                });
+                var quillEditor = document.getElementById('quill-editor-area');
+                editor.on('text-change', function() {
+                    quillEditor.value = editor.root.innerHTML;
+                });
+                quillEditor.addEventListener('input', function() {
+                    editor.root.innerHTML = quillEditor.value;
+                });
+            }
+        });
+        var quillEditor = document.getElementById('quill-editor-area');
+        editor.on('text-change', function() {
+            quillEditor.value = editor.root.innerHTML;
+        });
+        quillEditor.addEventListener('input', function() {
+            editor.root.innerHTML = quillEditor.value;
+        });
+    </script>
 @endsection

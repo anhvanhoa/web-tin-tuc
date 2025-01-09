@@ -128,7 +128,6 @@
                                             {!! old('content') !!}
                                         </div>
                                         <textarea rows="3" class="mb-3 d-none" name="content" id="quill-editor-area">
-                                            
                                         </textarea>
                                         @error('content')
                                             <div style="color: red">{{ $message }}</div>
