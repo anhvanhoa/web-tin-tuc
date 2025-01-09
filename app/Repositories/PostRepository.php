@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
@@ -54,5 +55,20 @@ class PostRepository extends BaseRepository
     public function getPostsByUser(string $userId)
     {
         return $this->where('user_id', $userId)->where('status', 'published')->paginate(10);
+    }
+
+    public function getPostsStatistics()
+    {
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $result = $this->model->selectRaw("
+            COUNT(*) as total_posts,
+            SUM(CASE WHEN created_at BETWEEN ? AND ? THEN 1 ELSE 0 END) as new_posts",
+            [$startOfMonth, $endOfMonth]
+        )->first();
+        return [
+            'total_posts' => $result->total_posts,
+            'new_posts' => $result->new_posts,
+        ];
     }
 }

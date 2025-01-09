@@ -9,34 +9,15 @@
                     Check the sales, value and bounce rate by country.
                 </p>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-header p-2 ps-3">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                                <h4 class="mb-0">$53k</h4>
-                            </div>
-                            <div
-                                class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                                <i class="material-symbols-rounded opacity-10">weekend</i>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-2 ps-3">
-                        <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+55% </span>than
-                            last week</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-header p-2 ps-3">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                                <h4 class="mb-0">2300</h4>
+                                <p class="text-sm mb-0 text-capitalize">Users</p>
+                                <h4 class="mb-0">
+                                    {{ $user_statistics['new_users'] }} / {{ $user_statistics['total_users'] }}
+                                </h4>
                             </div>
                             <div
                                 class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
@@ -46,18 +27,18 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-2 ps-3">
-                        <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+3% </span>than last
-                            month</p>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-header p-2 ps-3">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="text-sm mb-0 text-capitalize">Ads Views</p>
-                                <h4 class="mb-0">3,462</h4>
+                                <p class="text-sm mb-0 text-capitalize">Posts</p>
+                                <h4 class="mb-0">
+                                    {{ $post_statistics['new_posts'] }} / {{ $post_statistics['total_posts'] }}
+                                </h4>
                             </div>
                             <div
                                 class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
@@ -67,18 +48,18 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-2 ps-3">
-                        <p class="mb-0 text-sm"><span class="text-danger font-weight-bolder">-2% </span>than
-                            yesterday</p>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-4 col-sm-6">
                 <div class="card">
                     <div class="card-header p-2 ps-3">
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                                <h4 class="mb-0">$103,430</h4>
+                                <p class="text-sm mb-0 text-capitalize">Comment in month</p>
+                                <h4 class="mb-0">
+                                    {{ $comment_statistics }}
+                                </h4>
                             </div>
                             <div
                                 class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
@@ -88,13 +69,11 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-2 ps-3">
-                        <p class="mb-0 text-sm"><span class="text-success font-weight-bolder">+5% </span>than
-                            yesterday</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="opacity: 0.5; pointer-events: none;">
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card">
                     <div class="card-body">
@@ -151,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-4" style="opacity: 0.5; pointer-events: none;">
             <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
                 <div class="card">
                     <div class="card-header pb-0">

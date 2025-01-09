@@ -85,15 +85,16 @@
                                             <td class="align-middle">
                                             <td>
                                                 <a href="{{ route('admin.posts.edit', $post->id) }}"
-                                                    class="text-info px-2 mx-2">Edit</a>
+                                                    class="text-info px-2 mx-2 font-weight-bold text-xs">Edit</a>
                                                 <button style="border:none; background: transparent;" type="button"
                                                     class="text-danger font-weight-bold text-xs" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal-{{ $post->id }}">
                                                     Delete
                                                 </button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal-{{ $post->id }}" tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel-{{ $post->id }}" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal-{{ $post->id }}"
+                                                    tabindex="-1" aria-labelledby="exampleModalLabel-{{ $post->id }}"
+                                                    aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-body">
