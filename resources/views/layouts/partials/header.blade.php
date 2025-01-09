@@ -1,38 +1,13 @@
-{{-- <h3>Danh muc</h3>
-<ul>
-    @foreach ($categories as $category)
-        <li><a href="{{ route('category', $category->slugs) }}">{{ $category->name }}</a></li>
-    @endforeach
-</ul>
-
-@if (Route::has('auth.login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-            <a href="{{route('me')}}" class="text-sm text-gray-700 underline">{{ Auth::user()->name }}</a>
-            <form method="POST" action="{{ route('auth.logout') }}">
-                @csrf
-                <button type="submit" class="text-sm text-gray-700 underline">Logout</button>
-            </form>
-        @else
-            <a href="{{ route('auth.login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-            @if (Route::has('auth.register'))
-                <a href="{{ route('auth.register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-            @endif
-        @endauth
-    </div>
-@endif --}}
-
 <header class="tech-header header">
-    <div class="container-fluid">
+    <div class="container">
         <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}"><img src="images/version/tech-logo.png"
-                    alt=""></a>
+            <a class="navbar-brand" href="{{ route('home') }}"><img src="http://127.0.0.1:8000/img/logo-ct.png"
+                    class="navbar-brand-img" width="40" height="40" alt="main_logo"></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     {{-- <li class="nav-item dropdown has-submenu menu-large hidden-md-down hidden-sm-down hidden-xs-down">
@@ -466,9 +441,9 @@
                 </ul>
                 <ul class="navbar-nav mr-2">
                     @auth
-                        <a class="nav-link" style="font-size: 16px !important;"
-                            href="{{ route('me') }}">{{ Auth::user()->name }}</a>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display: flex; justify-content: space-between;">
+                            <a class="nav-link" style="font-size: 16px !important;"
+                                href="{{ route('me') }}">{{ Auth::user()->name }}</a>
                             <form method="POST" action="{{ route('auth.logout') }}">
                                 @csrf
                                 <button type="submit" class="btn-logout">
@@ -481,6 +456,16 @@
                                     </svg>
                                 </button>
                             </form>
+                            @if (strtoupper(Auth::user()->roles) == 'ADMIN')
+                                <a href="{{ route('admin.dashboard') }}">
+                                    <svg width="24px" height="24px"
+                                        style="margin-top: 5px; margin-inline: 4px; color:white" fill="currentColor"
+                                        class="bi bi-bell" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path
+                                            d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm320 96c0-26.9-16.5-49.9-40-59.3L280 88c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 204.7c-23.5 9.5-40 32.5-40 59.3c0 35.3 28.7 64 64 64s64-28.7 64-64zM144 176a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm-16 80a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM400 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                                    </svg>
+                                </a>
+                            @endif
                         </li>
                     @else
                         <li class="nav-item">

@@ -24,18 +24,35 @@ class PostRepository extends BaseRepository
         return $this->model->where('status', 'published')->paginate(10);
     }
 
+    // Popular Posts by comments
+    public function popularPosts()
+    {
+        return $this->model
+            ->select('posts.*')
+            ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+            ->where('posts.status', 'published')
+            ->groupBy('posts.id', 'posts.title', 'posts.content', 'posts.created_at', 'posts.updated_at', 'posts.description', 'posts.slugs', 'posts.thumbnail', 'posts.status', 'posts.user_id', 'posts.category_id') // Thêm tất cả các cột vào GROUP BY
+            ->orderByRaw('COUNT(comments.id) DESC')
+            ->take(5)
+            ->get();
+    }
     public function getPost(string $slugs)
     {
         return $this->where('slugs', $slugs)->where('status', 'published')->first();
     }
 
-    public function getPostsByCategory(string $slugs)
+    public function getPostsByCategory(string $id, int $limit = 10)
     {
-        return $this->where('category_id', $slugs)->where('status', 'published')->get();
+        return $this->where('category_id', $id)->where('status', 'published')->paginate($limit);
     }
 
     public function deletePost(string $userId, string $postId)
     {
         return $this->model->where('user_id', $userId)->where('id', $postId)->delete();
+    }
+
+    public function getPostsByUser(string $userId)
+    {
+        return $this->where('user_id', $userId)->where('status', 'published')->paginate(10);
     }
 }

@@ -26,7 +26,7 @@ class AccountController extends Controller
     {
         try {
             $this->accountService->updateProfile($request);
-            return redirect()->route('me');
+            return redirect()->route('me')->with('success', 'Cập nhật thông tin thành công');
         } catch (\Throwable $th) {
             Log::error($th);
             return back()->with('error', $th->getMessage());

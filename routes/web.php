@@ -47,4 +47,4 @@ Route::middleware('auth')->group(function () {
 
 // Posts
 Route::get('/{slugs}', [PostController::class, 'show'])->name('post');
-Route::get('/category/{slugs}', [PostController::class, 'category'])->name('category');
+Route::get('/category/{slugs}', [PostController::class, 'postsByCategory'])->name('category');

@@ -24,4 +24,11 @@ class CommentRepository extends BaseRepository
     {
         return $this->create($data);
     }
+
+    // Recent Comments
+
+    public function recentComments()
+    {
+        return $this->model->orderBy('created_at', 'desc')->limit(5)->get();
+    }
 }

@@ -7,6 +7,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
+use Illuminate\Http\Request;
 
 class PostService
 {
@@ -32,10 +33,12 @@ class PostService
         $categories = $this->categoryRepository->allCategories();
         $tags = $this->tagRepository->allTags();
         $post = $this->postRepository->getPost($slugs);
+        $popularPosts = $this->postRepository->popularPosts();
         return [
             'post' => $post,
             'tags' => $tags,
             'categories' => $categories,
+            'popularPosts' => $popularPosts,
         ];
     }
 
@@ -44,7 +47,8 @@ class PostService
         $categories = $this->categoryRepository->allCategories();
         $tags = $this->tagRepository->allTags();
         $category = $this->categoryRepository->getCategoryBySlugs($slugs);
-
+        $posts = $this->postRepository->getPostsByCategory($category->id);
+        $category['posts'] = $posts;
         return [
             'category' => $category,
             'categories' => $categories,

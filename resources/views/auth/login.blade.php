@@ -1,42 +1,53 @@
 @extends('layouts.layout-auth')
 
-@section('name', 'Đăng nhập')
+@section('name', 'Login to your account')
 
 @section('content')
-    {{-- alert success --}}
-    @if (session('success-register'))
-        <p style="color: green">
-            {{ session('success-register') }}
-        </p>
-    @endif
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="row" style="justify-content: center">
+                        {{-- alert success --}}
+                        @if (session('success-register'))
+                            <p style="color: green">
+                                {{ session('success-register') }}
+                            </p>
+                        @endif
 
-    <form method="POST" action="{{ route('auth.login') }}">
-        @csrf
-        <div>
-            <input type="email" name="email" placeholder="Email">
-            @error('email')
-                <p style="color: red">
-                    {{ $message }}
-                </p>
-            @enderror
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Mật khẩu">
-            @error('password')
-                <p style="color: red">
-                    {{ $message }}
-                </p>
-            @enderror
-        </div>
-        <p>
-            <button type="submit">Đăng nhập</button>
-        </p>
-        {{-- alert error --}}
+                        {{-- alert error --}}
+                        @if (session('error'))
+                            <p style="color: red">
+                                {{ session('error') }}
+                            </p>
+                        @endif
+                        <div class="col-lg-7">
+                            <form class="form-wrapper" method="POST" action="{{ route('auth.login') }}">
+                                @csrf
+                                <input type="text" name="email" class="form-control" placeholder="Email address">
+                                @error('email')
+                                    <p style="color: red">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                @error('password')
+                                    <p style="color: red">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                            {{-- redirect register --}}
 
-        @if (session('error'))
-            <p style="color: orange">
-                {{ session('error') }}
-            </p>
-        @endif
-    </form>
+                            <div class="form-wrapper mt-3">
+                                <p>Don't have an account? <a href="{{ route('auth.register') }}">Register</a></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div><!-- end page-wrapper -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
 @endsection

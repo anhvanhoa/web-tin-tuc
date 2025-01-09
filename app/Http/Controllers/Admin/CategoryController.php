@@ -34,7 +34,7 @@ class CategoryController extends Controller
             $this->categoryService->create($request);
             return redirect()->back()->with('success', 'Tạo danh mục thành công');
         } catch (\Throwable $th) {
-            return redirect()->back()->withInput()->withErrors($th->getMessage());
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ class CategoryController extends Controller
             $this->categoryService->update($request, $id);
             return redirect()->back()->with('success', 'Cập nhật danh mục thành công');
         } catch (\Throwable $th) {
-            return redirect()->back()->withInput()->withErrors($th->getMessage());
+            return redirect()->back()->withInput()->with('error', $th->getMessage());
         }
     }
 

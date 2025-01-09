@@ -26,6 +26,7 @@ class CategoryRepository extends BaseRepository
 
     public function getCategoryBySlugs(string $slugs)
     {
-        return $this->where('status', 'active')->where('slugs', $slugs)->first();
+        $category = $this->where('status', 'active')->where('slugs', $slugs)->first();
+        return $category;
     }
 }
