@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'email' => 'required|email',
             'roles' => 'required|in:admin,user',
-            'gender' => 'required|in:male,female,other',
+            'gender' => 'required|in:male,female,orther',
             'status' => 'nullable|in:active,locked',
         ];
     }

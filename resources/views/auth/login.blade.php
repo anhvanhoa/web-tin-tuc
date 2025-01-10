@@ -8,19 +8,21 @@
             <div class="col-lg-12">
                 <div class="page-wrapper">
                     <div class="row" style="justify-content: center">
-                        {{-- alert success --}}
-                        @if (session('success-register'))
-                            <p style="color: green">
-                                {{ session('success-register') }}
-                            </p>
-                        @endif
+                        <div class="col-lg-7">
+                            {{-- alert success --}}
+                            @if (session('success-register'))
+                                <p style="color: green">
+                                    {{ session('success-register') }}
+                                </p>
+                            @endif
 
-                        {{-- alert error --}}
-                        @if (session('error'))
-                            <p style="color: red">
-                                {{ session('error') }}
-                            </p>
-                        @endif
+                            {{-- alert error --}}
+                            @if (session('error'))
+                                <p style="color: red">
+                                    {{ session('error') }}
+                                </p>
+                            @endif
+                        </div>
                         <div class="col-lg-7">
                             <form class="form-wrapper" method="POST" action="{{ route('auth.login') }}">
                                 @csrf
@@ -44,7 +46,7 @@
                                 <p>Don't have an account? <a href="{{ route('auth.register') }}">Register</a></p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div><!-- end page-wrapper -->
             </div><!-- end col -->

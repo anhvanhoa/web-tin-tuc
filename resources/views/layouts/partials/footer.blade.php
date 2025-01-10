@@ -4,7 +4,7 @@
             <div class="col-lg-7">
                 <div class="widget">
                     <div class="footer-text text-left">
-                        <a href="index.html"><img src="images/version/tech-footer-logo.png" alt=""
+                        <a href="index.html"><img src="http://127.0.0.1:8000/img/logo-ct.png" width="80" height="80" alt="main_logo"
                                 class="img-fluid"></a>
                         <p>Tech Blog is a technology blog, we sharing marketing, news and gadget articles.</p>
                         <div class="social">

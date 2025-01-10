@@ -39,10 +39,13 @@ Route::middleware('auth')->group(function () {
     // Account
     Route::get('me', [AccountController::class, 'edit'])->name('me');
     Route::put('me', [AccountController::class, 'update'])->name('me.update');
+    
+    // Change pass
+    Route::get('change-pass', [AccountController::class, 'changePassView'])->name('auth.change-pass.view');
+    Route::put('change-pass', [AccountController::class, 'changePass'])->name('auth.change-pass');
 
     // Comment
     Route::post('comment', [PostController::class, 'comment'])->name('comment');
-
 });
 
 // Posts

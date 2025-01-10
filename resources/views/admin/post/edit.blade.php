@@ -160,9 +160,9 @@
                                             <div class=" mb-3">
                                                 <label for="content">Content</label>
                                                 <div id="quill-editor" class="mb-3" style="height: 300px;">
-                                                    {!! old('content') !!}
-                                                </div>
+                                                    {!! $post->content !!}</div>
                                                 <textarea rows="3" class="mb-3 d-none" name="content" id="quill-editor-area">
+                                                    {{ $post->content }}
                                                 </textarea>
                                                 @error('content')
                                                     <div style="color: red">{{ $message }}</div>

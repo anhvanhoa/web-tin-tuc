@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\AccountRequest;
+use App\Http\Requests\ChangePassRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
@@ -61,4 +62,16 @@ class AccountService
         }
         return $this->userRepository->updateUser(Auth::user()->id, $data);
     }
+
+    public function changePass(ChangePassRequest $request)
+    {
+        $data = $request->validated();
+        $user = Auth::user();
+        if (!password_verify($data['current_password'], $user->password)) {
+            throw new \Exception('Mật khẩu hiện tại không đúng');
+        }
+        $data['password'] = bcrypt($data['password']);
+        return $this->userRepository->updateUser($user->id, $data);
+    }
+
 }
